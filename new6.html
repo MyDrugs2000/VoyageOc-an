@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Voyage Oc√©an 2027</title>
+  
+  <style>
+    :root {
+      --primary-color: #335C67;
+      --text-light: #ffffff;
+      --overlay-dark: rgba(0, 0, 0, 0.4);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      color: #333;
+    }
+
+    .hero {
+      width: 100vw;
+      height: 100vh;
+      background-image: url('https://i.ibb.co/j9wcss3j/outerbanks5.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--overlay-dark);
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      color: var(--text-light);
+      max-width: 800px;
+      padding: 40px;
+	  height: 800px;
+    }
+
+    .hero h1 {
+      font-size: clamp(32px, 8vw, 60px);
+      margin: 0;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+    }
+
+    .hero p {
+      font-size: clamp(14px, 3vw, 20px);
+      margin: 20px 0;
+      background: rgba(0,0,0,0.5);
+      padding: 15px;
+      border-radius: 5px;
+    }
+	
+	.texte-image {
+		display: flex;
+		gap: 20px;
+		
+	}
+
+	.texte {
+		flex: 1;
+		text-align: left;
+	}
+
+	
+	a {
+		color: #2A9D8F;           /* couleur normale */
+		text-decoration: none;    /* enlËve le soulignement */
+	}
+
+	a:hover {
+		color: #5A9D8F;           /* couleur au survol */
+		text-decoration: underline;
+	}
+
+	a:visited {
+		color: #2A9D8F;           /* couleur aprËs avoir cliquÈ */
+	}
+	
+	/* ======== CONTENU CACH… - CSS COMPLET ======== */
+
+	.contenu-cachÈ {
+  display: none;
+  padding: 20px;
+  background: #264653;
+  border-radius: 6px;
+  animation: slideDown 0.3s ease-out;
+  margin: 20px auto;
+}
+
+.contenu-cachÈ.visible {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.contenu-cachÈ h3 {
+  text-align: center !important;
+  margin: 0 !important;
+  padding: 0;
+  color: white;
+  line-height: 1.8;
+  font-size: 14px;
+  width: 100%;
+}
+
+.contenu-cachÈ img {
+  display: block;
+  margin: 20px auto !important;
+  max-width: 100%;
+  height: auto;
+}
+
+			/* ======== BOUTON ======== */
+
+	.btn-lire-plus {
+		background: #264653;                 /* Fond gris-bleu */
+		color: white;                        /* Texte blanc */
+		border: none;                        /* Pas de bordure */
+		padding: 8px 15px;                   /* Espace interne */
+		border-radius: 4px;                  /* Arrondit les coins */
+		cursor: pointer;                     /* Curseur en main */
+		margin-top: 10px;                    /* Espace en haut */
+		transition: all 0.3s ease;           /* Animation lisse */
+	}
+
+	.btn-lire-plus:hover {
+		background: #1a3a45;                 /* Fond plus foncÈ */
+		transform: translateY(-2px);         /* Monte au survol */
+	}
+	
+    /* ===== COLONNES CAR & AVION ===== */
+    .colonnes-exemple3 {
+      display: flex;
+      gap: 30px;
+      margin: 30px auto;
+      max-width: 1600px;
+      padding: 0 20px;
+    }
+
+    .colonne-ex3 {
+      flex: 1;
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      border-left: 4px solid #264653;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .colonne-ex3 .icon {
+      font-size: 48px;
+      margin-bottom: 15px;
+    }
+
+    .colonne-ex3 h4 {
+      font-size: 24px;
+      color: #264653;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    .colonne-ex3 p {
+      font-size: 15px;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    /* ===== SECTION THEME ===== */
+    .section-theme {
+      padding: clamp(60px, 9vw ,120px);
+      color: white;
+      text-align: center;
+    }
+
+    .section-theme.theme-1 {
+      background-color: #264653;
+    }
+
+    .section-theme.theme-2 {
+      background-color: #2A9D8F;
+    }
+
+    .section-theme.theme-3 {
+      background-color: #E9C46A;
+      color: #333;
+    }
+
+    .section-theme.theme-4 {
+      background-color: #F4A261;
+    }
+
+    .section-theme.theme-5 {
+      background-color: #E76F51;
+    }
+
+    .section-theme.theme-6 {
+      background-color: #9B2226;
+    }
+
+    .section-theme h2 {
+      font-size: 36px;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+	  text-align: left;
+    }
+
+    .section-theme p {
+      font-size: 20px;
+      line-height: 1.6;
+      max-width: 500px;
+      margin: 10px auto 20px auto;
+    }
+
+    .section-theme h3 {
+      font-size: 18px;
+      margin: 20px 0;
+      line-height: 1.8;
+      text-align: left;
+    }
+
+    /* ===== BOUTONS ===== */
+    .buttons-container {
+      text-align: center;
+      padding: 40px;
+      background-color: #f9f9f9;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 30px;
+      margin: 10px 5px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 16px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary {
+      background-color: #335C67;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background-color: #1a3a45;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      color: #335C67;
+      border: 2px solid #335C67;
+    }
+
+    .btn-secondary:hover {
+      background-color: #335C67;
+      color: white;
+    }
+
+    /* ===== CALCULATEUR ===== */
+    .calculator {
+      background-color: #f5f5f5;
+      padding: 40px;
+      border-radius: 10px;
+      max-width: 600px;
+      margin: 40px auto;
+    }
+
+    .calculator h2 {
+      color: #333;
+      margin-bottom: 30px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+
+    .calculator button {
+      background-color: #335C67;
+      color: white;
+      padding: 12px 30px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      width: 100%;
+      transition: all 0.3s ease;
+    }
+
+    .calculator button:hover {
+      background-color: #1a3a45;
+      transform: translateY(-2px);
+    }
+
+    .result {
+      background-color: #335C67;
+      color: white;
+      padding: 20px;
+      border-radius: 5px;
+      margin-top: 20px;
+      display: none;
+    }
+
+    .result.show {
+      display: block;
+    }
+
+    .result h3 {
+      margin: 15px 0 10px 0;
+      font-size: 20px;
+      color: white;
+    }
+
+    .result-item {
+      background-color: rgba(255,255,255,0.1);
+      padding: 12px;
+      margin: 8px 0;
+      border-radius: 5px;
+      text-align: left;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .result-item span {
+      font-weight: bold;
+    }
+
+    .result hr {
+      border: none;
+      border-top: 1px solid rgba(255,255,255,0.3);
+      margin: 20px 0;
+    }
+
+    @media (max-width: 768px) {
+      .section-theme {
+        padding: 40px 20px;
+      }
+
+      .section-theme h2 {
+        font-size: 28px;
+      }
+
+      .section-theme p {
+        font-size: 16px;
+      }
+
+      .calculator {
+        padding: 20px;
+        margin: 20px;
+      }
+
+      .btn {
+        padding: 10px 20px;
+        font-size: 14px;
+      }
+
+      .hero-content {
+        padding: 20px;
+      }
+
+      .colonnes-exemple3 {
+        flex-direction: column;
+        gap: 20px;
+        padding: 0 10px;
+      }
+
+      .colonne-ex3 {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Voyage Oc√©an 2027</h1>
+      <p>En mode, Outer Banks !</p>
+    </div>
+  </section>
+
+  <!-- TH√àME 1: LE CONCEPT -->
+  <section class="section-theme theme-1">
+    <h2>&nbsp;&nbsp;Le Concept</h2>
+    <p>2 semaines de bonheur</p>
+    <h3>
+      L'id√©e nous est venue de s'organiser des vacances tous ensemble apr√®s avoir termin√© le BAC.
+      Partir √† la recherche de libert√© et simplicit√©. Nous sommes fiers de vous pr√©senter le roadtrip 
+      inoubliable de vos ann√©es au lyc√©e.
+      <br><br>
+      En passant par les trois plus beaux endroits de la c√¥te Atlantique pour surfer, chiller avec des potes,
+      et s'amuser. Nous commencerons par Lacanau, ville du Surf, avec des vagues magnifiques et plein de petits restaurants 
+      le long de la plage. Ensuite Biscarrosse pour passer quelques jours dans une ville plus familiale. 
+      Et pour terminer Cap-Breton, village tr√®s peu touristique avec des vagues violentes, et Hossegor LA ville du surf !
+    </h3>
+  </section>
+
+  <!-- TH√àME 2: LE TRAJET -->
+  <section class="section-theme theme-2">
+    <h2>&nbsp;&nbsp;Le Trajet</h2>
+    <p>Annecy ‚Üí Lacanau ‚Üí Biscarrosse ‚Üí Cap-Breton ‚Üí Annecy<br>
+		<br>
+		Le choix du Transport !
+	</p>
+    <h3></h3>
+
+    <!-- 3 COLONNES CAR & AVION & TRAIN -->
+	
+	<!-- AVION -->
+	
+    <div class="colonnes-exemple3">
+      <div class="colonne-ex3">
+        <div class="icon">‚úàÔ∏è</div>
+		
+        <h4><a href="https://www.easyjet.com/fr/" target="_blank" rel="noopener"
+			title="Easyjet">En Avion</a></h4>
+        <p>
+          L'avion prend seulement 1h30 et co√ªte 170‚Ç¨ aller-retour par personne. 
+          Rapide et efficace pour commencer notre aventure !
+        </p>
+		
+		 <!-- CONTENU CACH… -->
+		<div class="contenu-cachÈ">
+			<h3>
+			~ Easyjet ~
+			<br>
+			2semaines, fin mois d'oaut
+			<br>
+			billet aller retour ->
+			<br>
+			- 1000euro, soit 170euro par personne.
+			<br><br>
+			<img src="https://i.ibb.co/5xf7Kh25/EASYJET-BILLET.jpg" alt="Billet Easyjet" 
+			width="250" height="700" />
+			(En enlevant les bagage suplÈ. => 1379-6 * 75 = 930euroTotal)
+			<br>
+			
+			
+			</h3>
+		</div>
+		
+      </div>
+	  
+	  <!-- CAR -->
+
+      <div class="colonne-ex3">
+        <div class="icon">üöå</div>
+			<h4>En Car</h4>
+        <p>
+          Le car est plus long en tant mais est moin cher a 50euro prËs. 
+		  Il faudrait partir de Lyon pour le prendre.
+        </p>
+		
+		<!-- CONTENU CACH… -->
+		<div class="contenu-cachÈ">
+			<h3>
+			~ FLIXBUS ~
+			<br>
+			2semaines, fin mois d'oaut
+			<br>
+			billet aller retour ->
+			<br>
+			- 425euro, soit 70euro par personne.
+			<br><br>
+			<img src="https://i.ibb.co/FLytXQ1K/FLIXBUS-BILLET.jpg" alt="Billet FLIXBUS " 
+			width="250" height="600" />
+			<br>
+			(Se renseigner au niveau des bagages inclue d'office !)
+			<br>
+			
+			</h3>
+		</div>
+		
+      </div>
+	  
+	  <!-- TRAIN -->
+	  
+	  <div class="colonne-ex3">
+		<div class="icon">üöÇ</div>
+		<h4>En Train</h4>
+		<p>
+			Le Train prend autant de temps que le bus et reviens au meme prix.
+			On le prendrait a La Gare de Lyon.
+		</p>
+		
+		<!-- CONTENU CACH… -->
+		<div class="contenu-cachÈ">
+			<h3>~ OUIGO ~
+			<br>
+			2semaines, fin mois d'oaut
+			<br>
+			billet aller simple ->
+			<br>
+			- 400euro, soit 70euro par personne<br>
+			pour un aller. Et 800euro Total donc<br> 
+			130euro par personne 
+			
+			<br>
+			<br>
+			<img src="https://i.ibb.co/CpV6GGT1/OUIGO-TRAIN-BILLET.jpg" alt="Billet OUIGO " 
+			width="250" height="600" />
+			<br>
+			<br>
+			(Se renseigner au niveau des date et prix avec plus de prÈcisions !)
+			<br>
+			</h3>
+		</div>
+		
+	  </div>
+	  
+   </div>
+	
+	<button class="btn-lire-plus" onclick="toggleAll('contenu-cachÈ')">
+		Lire plus...
+	</button>
+		<br>
+<script>
+function toggleAll(className, btnId) {
+  const elements = document.querySelectorAll('.' + className);
+  const btn = document.getElementById(btnId);
+  
+  elements.forEach(el => el.classList.toggle('visible'));
+  
+  if (elements[0].classList.contains('visible')) {
+    btn.textContent = 'Lire moins...';
+  } else {
+    btn.textContent = 'Lire plus...';
+  }
+}
+</script>
+
+  <!-- TH√àME 3: LES ACTIVIT√âS -->
+  <section class="section-theme theme-3">
+    <h2>&nbsp;&nbsp;Les Activit√©s</h2>
+    <p>V√©los, planches et potes</p>
+	<br>
+	<h3> Alors comme activitÈes nous pourrions faire du surf, 
+	je ne sais pas si tout le monde c'est en faire mais sa s'apprend vite !
+	Il suffirait de louer des planche et combi si besoin a des Ècole comme celle-ci a Lacanau,
+	<a href="https://ecoledesurf-lacanau.com/" target="_blank" rel="noopener"
+	title="EcoleSurf">Hurley Surf Club Lacanau.</a>
+	<br>
+	A Biscarrosse il y a,
+	<a href="https://www.la-vigie-biscarrosse.com/" target="_blank" rel="noopener"
+	title="EcoleSurf">La Vigie.</a>
+		<br>
+	Toutes les Ècoles propose les meme tarifs, donc il faut compter 200‚Ç¨ 
+	pour 10jours complet sur les 14jours de vacances.
+		<br><br>
+	Il serait aussi agrÈable de pouvoir se promener a vÈlo pour aller en ville ou a la plage, ou encore au marchÈ.
+		<br>
+	Donc imaginons louer des vÈlos pour une durÈe de 10jours en soustrayans les jours de trajets, 
+	il faut compter 10‚Ç¨ par jour par personne. Biensur suivant le camping et nos besoin il faut adapter.
+		<br><br>
+	Le budget est grossi pour avoir le moins de supprise possible, et donc on peut imaginer aussi faire une part pour 
+	les quelques sortit en boite, ou plaisirs par ci par l‡... Disons 20‚Ç¨.
+		
+	</h3> 
+  </section>
+
+  <!-- TH√àME 4: LES SPOTS -->
+  <section class="section-theme theme-4">
+    <h2>&nbsp;&nbsp;Les Spots</h2>
+    <p>4j&nbsp;Lacanau ~ 3j&nbsp;Biscarrosse ~ 3j&nbsp;Cap-Breton</p>
+		<br>
+	<h3> Donc au Niveaux des ÈvËnements et des meilleurs endroits pour chaque destination: <br>
+		<br>
+	A Lacanau, on retrouve 
+		<a href="https://www.legardenlacanau.fr/" target="_blank" rel="noopener"
+		title="ClubLeGarden">Le Garden,</a>
+		Bar et restaurant, ouvert jusqu'a 2h du matin c'est l'une des 2 boites de Lacanau.
+			<br>
+		Il y a aussi
+		<a href="https://www.instagram.com/lamouettelacanau/?hl=fr" target="_blank" rel="noopener"
+		title="ClubLaMouette">La Mouette,</a>
+		une discothËque assez sympa, l'entrÈe est payantes. Il donne des info que sur Insta et Facebook.
+			<br>
+		On retrouve aussi,
+		<a href="https://www.instagram.com/explore/locations/625254884328379/le-seagate-lacanau-officiel/" target="_blank" rel="noopener"
+		title="ClubSeaGates">Le Sea Gates,</a>
+		club et restaurant. C'est le meilleurs selon les locaux pour la musique et l'ambiance. L'entrÈe est gratuite.
+			<br>
+		ainsi que, 
+		<a href="https://www.instagram.com/modjolacanau/" target="_blank" rel="noopener"
+		title="ClubModjo">Le Modjo,</a>
+		une discothËque qui allaire de proposer des musique plutot de jeune, et il y a 
+		peut etre un "ModjoFestival" en Aout, a voir.
+			<br>
+		Il y a un restaurant et coktail,
+		<a href="" target="_blank" rel="noopener"
+		title="ClubKontiki">Le Kontiki,</a>
+		sur instagram j'ai vu que il y avait aussi des grandes soirÈe. 
+			<br>
+			<br>
+		Pour plus d'info sur les ÈvËnements aller sur le site de 
+		<a href="https://www.medoc-atlantique.com/lacanau/lagenda-a-lacanau/page/19/" target="_blank" rel="noopener"
+		title="OfficeTourisme">l'Office Tourisme.</a>
+			<br>
+			<br>
+			<br>
+	A Biscarrosse, il y a 
+		<a href="https://www.instagram.com/biscarhum" target="_blank" rel="noopener"
+		title="BarTapasRhum">Le BiscaRhum,</a>
+		trËs populaire pour son Èlexir ! Cache de belle chose qui ne pourrais que rappeller de joyeux souvenirs
+		... Je conseille de passer y faire un tour sans tarder.
+			<br>
+		Pour les fans de mini-jeux, billard, flechettes ou belotte cette endroit est pour vous !
+			<br>
+		<a href="https://www.instagram.com/globetrotterbisca/" target="_blank" rel="noopener"
+		title="Le Globe Trooter CafÈ">Le Globe Trooter CafÈ,</a>
+		Ouvert quasi tout les soirs.
+			<br>
+			<br>
+		Pour plus d'info aller sur l'
+		<a href="https://www.biscagrandslacs.com/agenda-des-manifestations/biscarrosse-plage" target="_blank" rel="noopener"
+		title="OfficeTourisme">Office Tourisme,</a>
+		il donne toutes les dates des manifestations a venir. Le marchÈ de nuit sur la grande place en face de la Roue est intÈrrÈsssant.
+			<br>
+		Et concernant les boites de nuits il y en a une seule mais les avis sont mitigÈs, c'est "L'Oceana".
+			<br>
+		Il y a aussi le "CALIDO Club" un Bar latino,avec des soirÈes ‡ thËme,et une bonne ambiance dansante. Ouvert du mercredi au samedi.
+			<br>
+			<br>
+			<br>
+	A Cap-Breton ou meme a Hossegore, C'est ici que Áa se passe vraiment cÙtÈ ambiance surf et nightlife de qualitÈ.
+			<br>
+		Il y a tout d'abord 
+		<a href="https://www.rosny-beer.com/rosny-bar" target="_blank" rel="noopener"
+		title="LeRosnyBar">LeRosnyBar,</a>
+		c'est au dÈpart une brasserie artisanal, et elle a rÈussi a se construire son propre Bar ! TrËs bonne adresse.
+			<br>
+		En deuxiËme nous retrouvons,
+		<a href="https://lebackstage.fr/#menu" target="_blank" rel="noopener"
+		title="BarTapas">Le Backstage,</a>
+		un bar &amp; tapas. L'un des meilleurs spots live de la zone.
+			<br>
+		Ensuite une salle de concerts ‡ Capbreton,
+		<a href="https://lecircus.fr/" target="_blank" rel="noopener"
+		title="Le Circus">Le Circus,</a>
+		avec une ambiance surf dÈtendue, programme musical en saison.
+			<br>
+		Le bar festif d'Hossegor,
+		<a href="https://www.hossegor.fr/fr/en-groupe--evg/detail/dick-s-sand-bar" target="_blank" rel="noopener"
+		title="Dick's Sand Bar">Dick's Sand Bar,</a>
+		karaokÈÈ, danse, ambiance survoltÈe. Ouvert vendredi et samedi soir jusqu'‡ 2h.
+		Les locaux appellent Áa le meilleur endroit pour faire la fÍte ‡ Hossegor.
+			<br>
+		Il a un ÈvËnements important,
+		<a href="https://little-festival.fr/" target="_blank" rel="noopener"
+		title="LittleFestival">Le Little Festival,</a>
+		trËs connue, c'est des concerts qui se dÈroule du 29juillet au 2aout souvent a rÈgardÈ.
+		Environ 35‚Ç¨ la place pour la journÈe de festival.
+			<br>
+			<br>
+		Pour plus d'info se rendre sur l'
+		<a href="https://www.seignosse-tourisme.com/agenda-bars-restos/grand-evenements/" target="_blank" rel="noopener"
+		title="OfficeTourisme">OfficeTourisme,</a>
+		de Seignosse village voisin de CapBreton et Hossegor. Pour etre au courant de toutes les soirÈes du coins !
+			<br>
+	</h3>
+  </section>
+
+  <!-- TH√àME 5: LES EMPLACEMENTS -->
+  <section class="section-theme theme-5">
+    <h2>&nbsp;&nbsp;Les Emplacements</h2>
+    <p>Les tentes en Camping !</p>
+		<h3>
+		Alors comme on n'as pas de voitures ni de van ni la fortune d'Iron man... on vas dormir en tentes donc 
+		pour ca il faudrait, du moin on est censÈ camper uniquement dans des camping. 
+			<br>
+			<br>
+		Donc j'ai sÈlÈctionnÈ les meilleurs camping, en prennant en compte les avis publiques et personnelles, le placement, et les prix.
+			<br>
+			<br>
+		Le Yelloh Village,
+		<a href="https://www.lesgrandspins.com/fr/emplacements/2702?arrivalDate=2026-06-01&departureDate=2026-06-04" target="_blank" rel="noopener"
+		title="CampingLacanau">Les Grands Pins,</a>
+		a Lacanau, proche de la plage nord ! avec de bon avis et le moins cher du coin pour 5 nuit.
+			<br>
+		<img src="https://i.ibb.co/G4ZChspT/Grand-Pins-Lacanau.jpg" alt="RÈservationCampingLac" 
+			width="1000" height="700" />
+			<br>
+			<br>
+		<a href="https://www.ms-vacances.com/tunnel-dachat/?page=1" target="_blank" rel="noopener"
+		title="CampingBiscarrosse">Le Vivier,</a>
+		super camping avec une super ambiance a 200m de la plage, prix acceptable. Il y a des terrain de volley, parck a jeu et piscine.
+			<br>
+		<img src="https://i.ibb.co/WSDVkgT/Vivier-Biscarrosse.jpg" alt="RÈservationCampingBisca" 
+			width="1000" height="700" />
+			<br>
+			<br>
+		<a href="https://vacances-andretrigano.com/reservation?webuser=web_VAT_fr&tokens=ignore_token&base_id=vat&display=reservation_content&actions=cancelReservation%3BchooseProposalFromKey&lang=FR&originUrl=https%3A%2F%2Fvacances-andretrigano.com%2Fcamping%2Fcamping-domaine-de-fierbois&proposal_key=100_2026-06-23_2026-06-29_EMPL_1%28A%29_17435_1-ETE-1-ETE&step=0" target="_blank" rel="noopener"
+		title="CampingCapBreton">Le Andre Trigano,</a>
+		pour CapBreton, vraiment accessible et prcohe des meilleuirs plage pour faire du surf assez engagÈe aprËs cette premiËre semaine !! 
+			<br>
+		<img src="https://i.ibb.co/8LfKMj1W/Fier-Bois-Cap-Breton.jpg" alt="RÈservationCampingCap" 
+			width="300" height="700" />
+	</h3>
+  </section>
+
+  <!-- TH√àME 6: LES BUDGETS -->
+  <section class="section-theme theme-6">
+    <h2>&nbsp;&nbsp;Budgets...</h2>
+    <p>Total + /personne</p>
+			<br>
+			<br>
+
+				<div class="texte-image">
+		<div class="texte">
+				<h3>
+				Cette longue durÈe du voyage et le changements de camping coute cher de plus que nous n'avons pas de vÈhicul.
+						<br>
+				Donc si on veut acoir un budget qui ne dÈpasse pas les 700‚Ç¨ par personnes le meilleur choix serait de prendre le Car. 
+				Et peut etre, eventuellement dormir a la belle Ètoile l'un des soir, aprËs tout on y vas pour l'aventure donc on ne vas pas s'arreter pour si peux !!
+				</h3>
+				
+				<p>Donc en RÈsumer:
+						<br><br>
+		&nbsp;&nbsp;&nbsp;Nombre de Jours 
+						<br><br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-> Lacanau minm 5j - max 6j  Budget 370‚Ç¨ 
+						<br><br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-> Biscarrosse minm 4j - max 5j Budjet 300‚Ç¨
+						<br><br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-> CapBreton minm 6j - max 7j Budget 260‚Ç¨
+						<br><br><br>
+		&nbsp;&nbsp;&nbsp;ActivitÈs: 
+						<br><br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-> Surf 10j - 20‚Ç¨ = 200‚Ç¨
+						<br><br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-> VÈlo 8j - 10‚Ç¨ = 80‚Ç¨	
+						<br><br><br>
+		&nbsp;&nbsp;&nbsp;SupplÈments:
+						<br><br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-> Boite, Club 20‚Ç¨ par Personne = 120‚Ç¨
+						<br><br></p>
+			</div>
+		<div class="image">
+				<img src="https://i.ibb.co/KzjtNByv/outerbanks.jpg" alt="OuterBanks" 
+			width="350" height="650" />
+			</div>
+		</div>
+			
+  </section>
+
+  <!-- BOUTONS -->
+  <div class="buttons-container">
+    <a href="#calculator" class="btn btn-primary">Calculer le budget</a>
+    <a href="https://www.google.com/maps/dir/Annecy/Bordeaux/Lacanau,+33680/Biscarrosse,+40600/Capbreton,+40130/@46.8073641,0.1297783,7z/data=!4m32!4m31!1m5!1m1!1s0x478b8fe55861febb:0x6a90ac32b5ab892b!2m2!1d6.1259117!2d45.9058956!1m5!1m1!1s0xd5527e8f751ca81:0x796386037b397a89!2m2!1d-0.5810938!2d44.8416106!1m5!1m1!1s0xd54acd62356e003:0x40665174816e3b0!2m2!1d-1.075745!2d44.978459!1m5!1m1!1s0xd54808242250a41:0x31362ef6d956cc21!2m2!1d-1.164218!2d44.3946602!1m5!1m1!1s0xd515b44ffc6090b:0xe99dc4937cb774f7!2m2!1d-1.420939!2d43.637844!3e0?entry=ttu&g_ep=EgoyMDI2MDMwOC4wIKXMDSoASAFQAw%3D%3D" 
+	target="_blank" rel="noopener" class="btn btn-secondary"> Voir la carte</a>
+  </div>
+
+  <!-- CALCULATEUR DE BUDGET -->
+  <section id="calculator" class="calculator">
+    <h2>üí∞ Calculateur de Budget</h2>
+    
+    <div class="form-group">
+      <label for="nb-jours">Nombre de jours Actif:</label>
+      <input type="number" id="nb-jours" value="13" min="1">
+    </div>
+
+    <div class="form-group">
+      <label for="nb-personnes">Nombre de personnes :</label>
+      <input type="number" id="nb-personnes" value="6" min="1">
+    </div>
+
+    <div class="form-group">
+      <label for="budget-jour-surf">Budget par jour de surf par personne (‚Ç¨) :</label>
+      <input type="number" id="budget-jour-surf" value="20" min="0">
+    </div>
+    
+    <div class="form-group">
+      <label for="budget-nourriture">Budget Total pour la nourriture (‚Ç¨) :</label>
+      <input type="number" id="budget-nourriture" value="400" min="0">
+    </div>
+    
+    <div class="form-group">
+      <label for="budget-velo">Budget par jour pour le v√©lo par personne (‚Ç¨) :</label>
+      <input type="number" id="budget-velo" value="10" min="0">
+    </div>
+    
+    <div class="form-group">
+      <label for="budget-car">Budget pour les d√©placements en car par personne (‚Ç¨) :</label>
+      <input type="number" id="budget-car" value="30" min="0">
+    </div>
+    
+    <div class="form-group">
+      <label for="budget-trajet-personne">Budget pour le trajet Aller-Retour par personne (‚Ç¨) :</label>
+      <input type="number" id="budget-trajet-personne" value="170" min="0">
+    </div>
+    
+    <div class="form-group">
+      <label for="budget-supplementaire">Budget suppl√©mentaire par personne (‚Ç¨) :</label>
+      <input type="number" id="budget-supplementaire" value="15" min="0">
+    </div>
+    
+    <div class="form-group">
+      <label for="budget-emplacement-lacanau">Budget par s√©jour √† Lacanau (‚Ç¨) :</label>
+      <input type="number" id="budget-emplacement-lacanau" value="250" min="0">
+    </div>
+    
+    <div class="form-group">
+      <label for="budget-emplacement-biscarrosse">Budget par s√©jour √† Biscarrosse (‚Ç¨) :</label>
+      <input type="number" id="budget-emplacement-biscarrosse" value="200" min="0">
+    </div>
+    
+    <div class="form-group">
+      <label for="budget-emplacement-capbreton">Budget par s√©jour √† CapBreton (‚Ç¨) :</label>
+      <input type="number" id="budget-emplacement-capbreton" value="170" min="0">
+    </div>
+
+    <button onclick="calculerBudget()">Calculer le budget</button>
+
+    <div class="result" id="resultat">
+      <h3>üìä R√©sum√© du Budget</h3>
+      
+      <div class="result-item">
+        <strong>Budget Total :</strong>
+        <span id="budget-total">0 ‚Ç¨</span>
+      </div>
+      
+      <div class="result-item">
+        <strong>Budget par personne :</strong>
+        <span id="budget-par-personne">0 ‚Ç¨</span>
+      </div>
+
+      <hr>
+
+      <h3>üìã D√©tails</h3>
+      
+      <div class="result-item">
+        <strong>Surf :</strong>
+        <span id="detail-surf">0 ‚Ç¨</span>
+      </div>
+      
+      <div class="result-item">
+        <strong>V√©lo :</strong>
+        <span id="detail-velo">0 ‚Ç¨</span>
+      </div>
+      
+      <div class="result-item">
+        <strong>Nourriture :</strong>
+        <span id="detail-nourriture">0 ‚Ç¨</span>
+      </div>
+      
+      <div class="result-item">
+        <strong>Trajet :</strong>
+        <span id="detail-trajet">0 ‚Ç¨</span>
+      </div>
+      
+      <div class="result-item">
+        <strong>D√©placement :</strong>
+        <span id="detail-deplacement">0 ‚Ç¨</span>
+      </div>
+      
+      <div class="result-item">
+        <strong>Suppl√©mentaire :</strong>
+        <span id="detail-supplementaire">0 ‚Ç¨</span>
+      </div>
+      
+      <div class="result-item">
+        <strong>Camping :</strong>
+        <span id="detail-camping">0 ‚Ç¨</span>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    function calculerBudget() {
+      const jours = parseFloat(document.getElementById('nb-jours').value);
+      const personnes = parseFloat(document.getElementById('nb-personnes').value);
+      const budgetJourSurf = parseFloat(document.getElementById('budget-jour-surf').value);
+      const budgetJourVeloPersonne = parseFloat(document.getElementById('budget-velo').value);
+      const budgetTotalNourriture = parseFloat(document.getElementById('budget-nourriture').value);
+      const budgetTrajetPersonne = parseFloat(document.getElementById('budget-trajet-personne').value);
+      const budgetDeplacementPersonne = parseFloat(document.getElementById('budget-car').value);
+      const budgetSupplementaire = parseFloat(document.getElementById('budget-supplementaire').value);
+      const budgetSejourLacanau = parseFloat(document.getElementById('budget-emplacement-lacanau').value);
+      const budgetSejourBiscarrosse = parseFloat(document.getElementById('budget-emplacement-biscarrosse').value);
+      const budgetSejourCapBreton = parseFloat(document.getElementById('budget-emplacement-capbreton').value);
+
+      if (!jours || !personnes || !budgetJourSurf || !budgetTotalNourriture || !budgetTrajetPersonne || !budgetDeplacementPersonne || !budgetJourVeloPersonne || !budgetSupplementaire || !budgetSejourLacanau || !budgetSejourBiscarrosse || !budgetSejourCapBreton) {
+        alert('Remplis tous les champs !');
+        return;
+      }
+
+      const budgetTotalSurf = jours * personnes * budgetJourSurf;
+      const budgetTotalVelo = budgetJourVeloPersonne * personnes * jours;
+      const budgetTotalTrajet = personnes * budgetTrajetPersonne;
+      const budgetTotalDeplacement = personnes * budgetDeplacementPersonne;
+      const budgetTotalSupplementaire = budgetSupplementaire * personnes;
+      const budgetTotalCamping = budgetSejourLacanau + budgetSejourBiscarrosse + budgetSejourCapBreton;
+
+      const budgetTotal = budgetTotalSurf + budgetTotalVelo + budgetTotalNourriture + budgetTotalTrajet + budgetTotalDeplacement + budgetTotalSupplementaire + budgetTotalCamping;
+      const budgetParPersonne = budgetTotal / personnes;
+
+      document.getElementById('budget-total').textContent = budgetTotal.toLocaleString('fr-FR') + ' ‚Ç¨';
+      document.getElementById('budget-par-personne').textContent = budgetParPersonne.toLocaleString('fr-FR') + ' ‚Ç¨';
+
+      document.getElementById('detail-surf').textContent = budgetTotalSurf.toLocaleString('fr-FR') + ' ‚Ç¨';
+      document.getElementById('detail-velo').textContent = budgetTotalVelo.toLocaleString('fr-FR') + ' ‚Ç¨';
+      document.getElementById('detail-nourriture').textContent = budgetTotalNourriture.toLocaleString('fr-FR') + ' ‚Ç¨';
+      document.getElementById('detail-trajet').textContent = budgetTotalTrajet.toLocaleString('fr-FR') + ' ‚Ç¨';
+      document.getElementById('detail-deplacement').textContent = budgetTotalDeplacement.toLocaleString('fr-FR') + ' ‚Ç¨';
+      document.getElementById('detail-supplementaire').textContent = budgetTotalSupplementaire.toLocaleString('fr-FR') + ' ‚Ç¨';
+      document.getElementById('detail-camping').textContent = budgetTotalCamping.toLocaleString('fr-FR') + ' ‚Ç¨';
+
+      document.getElementById('resultat').classList.add('show');
+    }
+
+    window.addEventListener('load', calculerBudget);
+  </script>
+
+</body>
+</html>
